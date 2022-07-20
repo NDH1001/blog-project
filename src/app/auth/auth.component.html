@@ -1,0 +1,64 @@
+<div class="auth-page">
+  <div id="container">
+    <div id="left">
+      <h1 id="welcome">Welcome</h1>
+      <p id="lorem">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
+        Vivamus sodales eros non arcu pellentesque convallis.<br />
+        Nunc dignissim lectus in malesuada porta.<br />
+        Proin ac erat sed urna congue suscipit.<br />
+        Morbi aliquet eget nisl id ornare.
+      </p>
+    </div>
+    <div id="right">
+      <app-list-errors [errors]="errors"></app-list-errors>
+      <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+        <h1 id="login">{{ title }}</h1>
+        <br />
+        <div *ngIf="authType == 'register'">
+          <input
+            formControlName="username"
+            id="username"
+            class="client-info"
+            type="text"
+          />
+          <label for="username">Username</label>
+        </div>
+
+        <!-- <input type="email" id="email" class="client-info" /> -->
+        <input
+          formControlName="email"
+          id="email"
+          class="client-info"
+          type="text"
+        />
+        <label for="email">Email</label>
+        <!-- <input type="password" id="password" class="client-info" /> -->
+        <input
+          formControlName="password"
+          id="password"
+          class="client-info"
+          type="password"
+        />
+        <label for="password">Password</label>
+        <p class="text-xs-center">
+          <a [routerLink]="['/login']" *ngIf="authType == 'register'"
+            >Have an account?</a
+          >
+          <a [routerLink]="['/register']" *ngIf="authType == 'login'"
+            >Need an account?</a
+          >
+        </p>
+        <!-- <input type="submit" id="submit" class="client-info" value="Submit" /> -->
+        <button class="client-info" [disabled]="!authForm.valid" type="submit">
+          {{ title }}
+        </button>
+        <div>
+          <p class="text-xs-center">Or</p>
+        </div>
+        <button class="social" id="facebook">connect with facebook</button>
+        <button class="social" id="google">connect with google</button>
+      </form>
+    </div>
+  </div>
+</div>
